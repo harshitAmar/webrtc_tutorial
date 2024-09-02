@@ -24,7 +24,8 @@ class Signaling {
   String? currentRoomText;
   StreamStateCallback? onAddRemoteStream;
 
-  Future<String> createRoom(RTCVideoRenderer remoteRenderer) async {
+  Future<String> createRoom(
+      RTCVideoRenderer remoteRenderer, bool isVideoON) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     DocumentReference roomRef = db.collection('rooms').doc();
 
@@ -42,8 +43,11 @@ class Signaling {
     var callerCandidatesCollection = roomRef.collection('callerCandidates');
 
     peerConnection?.onIceCandidate = (RTCIceCandidate candidate) {
-      print('Got candidate: ${candidate.toMap()}');
-      callerCandidatesCollection.add(candidate.toMap());
+      Map<String, dynamic> jsonData = candidate.toMap();
+
+      jsonData.addAll({"video_call": isVideoON});
+
+      callerCandidatesCollection.add(jsonData);
     };
     // Finish Code for collecting ICE candidate
 
@@ -108,7 +112,8 @@ class Signaling {
     return roomId;
   }
 
-  Future<void> joinRoom(String roomId, RTCVideoRenderer remoteVideo) async {
+  Future<void> joinRoom(
+      String roomId, RTCVideoRenderer remoteVideo, bool isVideoOn) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     print(roomId);
     DocumentReference roomRef = db.collection('rooms').doc('$roomId');
@@ -182,12 +187,10 @@ class Signaling {
     }
   }
 
-  Future<void> openUserMedia(
-    RTCVideoRenderer localVideo,
-    RTCVideoRenderer remoteVideo,
-  ) async {
+  Future<void> openUserMedia(RTCVideoRenderer localVideo,
+      RTCVideoRenderer remoteVideo, bool isVideoOn) async {
     var stream = await navigator.mediaDevices
-        .getUserMedia({'video': true, 'audio': true});
+        .getUserMedia({'video': isVideoOn, 'audio': true});
 
     localVideo.srcObject = stream;
     localStream = stream;
@@ -221,6 +224,12 @@ class Signaling {
     localStream!.dispose();
     remoteStream?.dispose();
   }
+
+  Future<void> muteAudio() async {
+    localStream?.getAudioTracks();
+  }
+
+  Future<void> muteVideo() async {}
 
   void registerPeerConnectionListeners() {
     peerConnection?.onIceGatheringState = (RTCIceGatheringState state) {

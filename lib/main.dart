@@ -73,34 +73,53 @@ class _MyHomePageState extends State<MyHomePage> {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
-                  signaling.openUserMedia(_localRenderer, _remoteRenderer);
+                onPressed: () async {
+                  signaling.openUserMedia(
+                      _localRenderer, _remoteRenderer, false);
+                  roomId = await signaling.createRoom(_remoteRenderer, false);
+                  textEditingController.text = roomId!;
+                  setState(() {});
                 },
-                child: Text("Open camera & microphone"),
+                child: Text("Audio Call"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  signaling.openUserMedia(
+                      _localRenderer, _remoteRenderer, true);
+                  roomId = await signaling.createRoom(_remoteRenderer, true);
+                  textEditingController.text = roomId!;
+                  setState(() {});
+                },
+                child: Text("Video Call"),
               ),
               SizedBox(
                 width: 8,
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  roomId = await signaling.createRoom(_remoteRenderer);
-                  textEditingController.text = roomId!;
-                  setState(() {});
-                },
-                child: Text("Create room"),
-              ),
+              // ElevatedButton(
+              //   onPressed: () async {
+
+              //   },
+              //   child: Text("Create room"),
+              // ),
               SizedBox(
                 width: 8,
               ),
               ElevatedButton(
                 onPressed: () {
                   // Add roomId
-                  signaling.joinRoom(
-                    textEditingController.text.trim(),
-                    _remoteRenderer,
-                  );
+                  signaling.joinRoom(textEditingController.text.trim(),
+                      _remoteRenderer, false);
                 },
-                child: Text("Join room"),
+                child: Text("Join audio room"),
+              ),
+
+              ElevatedButton(
+                onPressed: () {
+                  // Add roomId
+                  signaling.joinRoom(
+                      textEditingController.text.trim(), _remoteRenderer, true);
+                },
+                child: Text("Join video room"),
               ),
               SizedBox(
                 width: 8,
@@ -110,6 +129,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   signaling.hangUp(_localRenderer);
                 },
                 child: Text("Hangup"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  signaling.muteAudio();
+                },
+                child: Text("Mute Audio"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  signaling.muteVideo();
+                },
+                child: Text("Mute Video"),
               )
             ],
           ),
