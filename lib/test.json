@@ -1,0 +1,185 @@
+{
+    "attributes": [
+        {
+            "name": "Width",
+            "unit": "inch",
+            "values": [
+                2,
+                4,
+                6
+            ]
+        },
+        {
+            "name": "Fabric",
+            "unit": "typr",
+            "values": [
+                "Cotton",
+                "Nylon"
+            ]
+        },
+        {
+            "name": "Color",
+            "unit": "type",
+            "values": [
+                "Red",
+                "Blue",
+                "Green"
+            ]
+        }
+    ],
+
+
+
+    
+            "variation": [
+                {
+                    "name": "32 Cotton Red",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Cotton",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "32 Cotton Blue",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Cotton",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "32 Cotton Green",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Cotton",
+                        "Color": "Green"
+                    }
+                },
+                {
+                    "name": "32 Nylon Red",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Nylon",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "32 Nylon Blue",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Nylon",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "32 Nylon Green",
+                    "attributes": {
+                        "Size": 32,
+                        "Fabric": "Nylon",
+                        "Color": "Green"
+                    }
+                },
+
+
+
+                {
+                    "name": "36 Cotton Red",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Cotton",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "36 Cotton Blue",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Cotton",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "36 Cotton Green",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Cotton",
+                        "Color": "Green"
+                    }
+                },
+                {
+                    "name": "36 Nylon Red",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Nylon",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "36 Nylon Blue",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Nylon",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "36 Nylon Green",
+                    "attributes": {
+                        "Size": 36,
+                        "Fabric": "Nylon",
+                        "Color": "Green"
+                    }
+                },
+
+                {
+                    "name": "40 Cotton Red",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Cotton",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "40 Cotton Blue",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Cotton",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "40 Cotton Green",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Cotton",
+                        "Color": "Green"
+                    }
+                },
+                {
+                    "name": "40 Nylon Red",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Nylon",
+                        "Color": "Red"
+                    }
+                },
+                {
+                    "name": "40 Nylon Blue",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Nylon",
+                        "Color": "Blue"
+                    }
+                },
+                {
+                    "name": "40 Nylon Green",
+                    "attributes": {
+                        "Size": 40,
+                        "Fabric": "Nylon",
+                        "Color": "Green"
+                    }
+                }
+
+            ]
+}

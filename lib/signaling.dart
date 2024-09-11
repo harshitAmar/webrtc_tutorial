@@ -254,4 +254,41 @@ class Signaling {
       remoteStream = stream;
     };
   }
+
+  List<Map<String, dynamic>> generateVariations(List<dynamic> attributes) {
+    List<String> attrNames =
+        attributes.map((attr) => attr['name'] as String).toList();
+    List<List<dynamic>> attrValues =
+        attributes.map((attr) => attr['values'] as List<dynamic>).toList();
+
+    List<Map<String, dynamic>> variations =
+        generateFactor(attrNames, attrValues);
+
+    return variations.map((variety) {
+      String name = variety.entries
+          .map((entry) => "${entry.key}: ${entry.value}")
+          .join(', ');
+
+      return {"name": name, "attributes": variety};
+    }).toList();
+  }
+
+  List<Map<String, dynamic>> generateFactor(
+      List<String> names, List<List<dynamic>> values) {
+    List<Map<String, dynamic>> result = [{}];
+
+    for (int i = 0; i < names.length; i++) {
+      List<Map<String, dynamic>> newResult = [];
+
+      for (Map<String, dynamic> existingCombo in result) {
+        for (dynamic value in values[i]) {
+          newResult.add({...existingCombo, names[i]: value});
+        }
+      }
+
+      result = newResult;
+    }
+
+    return result;
+  }
 }

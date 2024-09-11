@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:webrtc_tutorial/category_page.dart';
 import 'package:webrtc_tutorial/firebase_options.dart';
 import 'package:webrtc_tutorial/signaling.dart';
+
+import 'add_product.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +26,36 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: TestPAge(),
+    );
+  }
+}
+
+class TestPAge extends StatelessWidget {
+  const TestPAge({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+              child: Text("category"),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CategoryPage()));
+              }),
+          FloatingActionButton(
+              child: Text("product"),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddProduct()));
+              }),
+        ],
+      ),
     );
   }
 }
@@ -52,6 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     super.initState();
   }
+
+  List<Map<String, dynamic>> output = [];
 
   @override
   void dispose() {
@@ -138,7 +174,34 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  signaling.muteVideo();
+                  // signaling.muteVideo();
+
+                  var input = [
+                    {
+                      "name": "Width",
+                      "unit": "inch",
+                      "values": [32, 24, 36]
+                    },
+                    {
+                      "name": "thickness",
+                      "unit": "inch",
+                      "values": [2, 4, 6]
+                    },
+                    {
+                      "name": "Fabric",
+                      "unit": "typr",
+                      "values": ["Cotton", "Nylon", "White"]
+                    },
+                    {
+                      "name": "Color",
+                      "unit": "type",
+                      "values": ["Red", "Blue", "Green", "White"]
+                    }
+                  ];
+
+                  output = signaling.generateVariations(input);
+
+                  log("${output}");
                 },
                 child: Text("Mute Video"),
               )
